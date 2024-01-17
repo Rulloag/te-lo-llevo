@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goToHome();" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Nueva solicitud de transporte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="solicitudForm" (ngSubmit)="crearSolicitud()">
+    <ion-item>
+      <ion-input type="text" formControlName="numeroDeOrden" label="Número de Orden"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" formControlName="descripcion" label="Descripción"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" formControlName="origen" label="Origen"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" formControlName="direccionOrigen" label="Dirección Origen"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" formControlName="destino" label="Destino"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" formControlName="direccionDestino" label="Dirección Destino"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Crear Solicitud</ion-button>
+  </form>
+</ion-content>

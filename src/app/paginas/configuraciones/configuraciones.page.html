@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goToHome();" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Configuraciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input label="URL de la API" [(ngModel)]="apiUrl"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="saveApiUrl()">Guardar</ion-button>
+</ion-content>
