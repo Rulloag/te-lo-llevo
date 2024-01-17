@@ -13,7 +13,9 @@ export class ConfigService {
     this.storageService.setItem('apiUrl', url);
   }
 
-  getApiUrl() {
-    return this.storageService.getItem('apiUrl');
+  async getApiUrl() {
+    let apiUrl: string = '';
+    await this.storageService.getItem('apiUrl').then(r => apiUrl = r);
+    return apiUrl;
   }
 }

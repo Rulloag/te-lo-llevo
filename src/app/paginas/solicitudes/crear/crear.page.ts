@@ -62,9 +62,10 @@ export class CrearPage implements OnInit {
     await alert.present();
   }
 
-  crearSolicitud() {
+  async crearSolicitud() {
     this.mostrarLoading().then(r => console.log(`Loading creado: [${r}]`));
-    const apiUrl = this.configService.getApiUrl();
+    let apiUrl;
+    await this.configService.getApiUrl().then(r => apiUrl = r);
     this.http.post<SolicitudResponse>(`http://${apiUrl}/solicitudes`, this.solicitudForm.value)
       .subscribe(response => {
         console.log(response);

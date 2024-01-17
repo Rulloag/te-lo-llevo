@@ -19,7 +19,9 @@ export class StorageService {
     this._storage?.['set'](key, value);
   }
 
-  getItem(key: string) {
-    return this._storage?.['get'](key);
+  async getItem(key: string) {
+    let value: any = null
+    await this._storage?.['get'](key).then(r => value = r)
+    return value;
   }
 }

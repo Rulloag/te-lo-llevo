@@ -31,7 +31,8 @@ export class ListarPage implements OnInit {
       message: 'Cargando solicitudes...',
     });
     await loading.present();
-    const apiUrl = this.configService.getApiUrl();
+    let apiUrl;
+    await this.configService.getApiUrl().then(r => apiUrl = r);
     this.http.get<any[]>(`http://${apiUrl}/solicitudes`)
       .subscribe(data => {
         this.solicitudes = data.map(item => {
