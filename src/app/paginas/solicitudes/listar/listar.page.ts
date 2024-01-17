@@ -72,9 +72,12 @@ export class ListarPage implements OnInit {
     });
     await loading.present();
 
+    let apiUrl;
+    await this.configService.getApiUrl().then(r => apiUrl = r);
+
     this.http.get<{
       transportes: Transporte[]
-    }>('http://192.168.100.27:8080/transportes/busqueda?textoBusqueda=' + solicitud.textoBusqueda)
+    }>(`http://${apiUrl}/transportes/busqueda?textoBusqueda=${solicitud.textoBusqueda}`)
       .subscribe(data => {
         solicitud.transportesFiltrados = data.transportes;
         loading.dismiss();
@@ -97,7 +100,10 @@ export class ListarPage implements OnInit {
       });
       await loading.present();
 
-      this.http.patch<{estado: string}>('http://192.168.100.27:8080/solicitudes/' + solicitud.codigoSeguimiento + '/asignacion', {transporteId: solicitud.transporteSeleccionado.id})
+      let apiUrl;
+      await this.configService.getApiUrl().then(r => apiUrl = r);
+
+      this.http.patch<{estado: string}>(`http://${apiUrl}/solicitudes/${solicitud.codigoSeguimiento}/asignacion`, {transporteId: solicitud.transporteSeleccionado.id})
         .subscribe(response => {
           solicitud.transporte = solicitud.transporteSeleccionado;
           solicitud.transporteSeleccionado = null;
