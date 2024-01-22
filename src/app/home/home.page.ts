@@ -15,3 +15,5 @@ export class HomePage {
     this.menu.close().then(r => console.log(`Menú cerrado: ${r}`));
   }
 }
+
+
